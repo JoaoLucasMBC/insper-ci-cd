@@ -45,3 +45,15 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: joaolucasmbc/partida-ci-v2:${{ github.sha }}
+
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_TEST }}
+        username: "ec2-user"
+        key: ${{ secrets.KEY_TEST }}
+        port: 22
+        script: |
+          docker stop partida-ci-v2
+          docker rm --force partida-ci-v2
+          docker run -d -p 8080:8080 --name partida-ci-v2 joaolucasmbc/partida-ci-v2:${{ github.sha }}
