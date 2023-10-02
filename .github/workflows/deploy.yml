@@ -44,4 +44,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: joaolucasmbc/partida-ci-v2:latest
+        tags: joaolucasmbc/partida-ci-v2:${{ github.sha }}
