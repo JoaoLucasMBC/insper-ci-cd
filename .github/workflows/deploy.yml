@@ -56,4 +56,4 @@ jobs:
         script: |
           docker stop partida-ci-v2
           docker rm --force partida-ci-v2
-          docker run -d -p 8080:8080 --name partida-ci-v2 joaolucasmbc/partida-ci-v2:${{ github.sha }}
+          docker run -e MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -d -p 8080:8080 --name partida-ci-v2 joaolucasmbc/partida-ci-v2:${{ github.sha }}
